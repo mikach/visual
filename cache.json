@@ -341,5 +341,251 @@
 			"cookiejar",
 			"indexof"
 		]
+	},
+	"jdataview": {
+		"name": "jdataview",
+		"version": "2.4.4",
+		"time": "2013-09-04T17:07:37.988Z",
+		"nameList": [
+			"jdataview"
+		]
+	},
+	"json-stringify-safe": {
+		"name": "json-stringify-safe",
+		"version": "5.0.0",
+		"time": "2013-08-02T20:28:17.007Z",
+		"nameList": [
+			"json-stringify-safe"
+		]
+	},
+	"aws-sign": {
+		"name": "aws-sign",
+		"version": "0.3.0",
+		"time": "2013-04-22T05:13:43.202Z",
+		"nameList": [
+			"aws-sign"
+		]
+	},
+	"oauth-sign": {
+		"name": "oauth-sign",
+		"version": "0.4.0",
+		"time": "2013-09-23T22:58:47.722Z",
+		"nameList": [
+			"oauth-sign"
+		]
+	},
+	"cookie-jar": {
+		"name": "cookie-jar",
+		"version": "0.3.0",
+		"time": "2013-04-22T05:13:11.292Z",
+		"nameList": [
+			"cookie-jar"
+		]
+	},
+	"node-uuid": {
+		"name": "node-uuid",
+		"version": "1.4.1",
+		"time": "2013-08-17T12:51:06.146Z",
+		"nameList": [
+			"node-uuid"
+		]
+	},
+	"assert-plus": {
+		"name": "assert-plus",
+		"version": "0.1.4",
+		"time": "2013-06-27T17:20:20.703Z",
+		"nameList": [
+			"assert-plus"
+		]
+	},
+	"asn1": {
+		"name": "asn1",
+		"version": "0.1.11",
+		"time": "2012-01-06T17:02:19.759Z",
+		"nameList": [
+			"asn1"
+		]
+	},
+	"ctype": {
+		"name": "ctype",
+		"version": "0.5.3",
+		"time": "2013-06-03T04:13:23.157Z",
+		"nameList": [
+			"ctype"
+		]
+	},
+	"http-signature": {
+		"name": "http-signature",
+		"version": "0.10.0",
+		"time": "2013-05-07T15:29:05.252Z",
+		"nameList": [
+			"http-signature",
+			"assert-plus",
+			"asn1",
+			"ctype"
+		]
+	},
+	"delayed-stream": {
+		"name": "delayed-stream",
+		"version": "0.0.5",
+		"time": "2011-05-24T08:09:45.283Z",
+		"nameList": [
+			"delayed-stream"
+		]
+	},
+	"combined-stream": {
+		"name": "combined-stream",
+		"version": "0.0.4",
+		"time": "2013-02-02T18:29:01.654Z",
+		"nameList": [
+			"combined-stream",
+			"delayed-stream"
+		]
+	},
+	"async": {
+		"name": "async",
+		"version": "0.2.9",
+		"time": "2013-05-28T07:50:48.795Z",
+		"nameList": [
+			"async"
+		]
+	},
+	"form-data": {
+		"name": "form-data",
+		"version": "0.1.1",
+		"time": "2013-08-22T04:22:58.445Z",
+		"nameList": [
+			"form-data",
+			"combined-stream",
+			"mime",
+			"async",
+			"delayed-stream"
+		]
+	},
+	"forever-agent": {
+		"name": "forever-agent",
+		"version": "0.5.0",
+		"time": "2013-04-22T05:14:38.186Z",
+		"nameList": [
+			"forever-agent"
+		]
+	},
+	"tunnel-agent": {
+		"name": "tunnel-agent",
+		"version": "0.3.0",
+		"time": "2013-04-22T05:11:34.229Z",
+		"nameList": [
+			"tunnel-agent"
+		]
+	},
+	"hoek": {
+		"name": "hoek",
+		"version": "1.0.3",
+		"time": "2013-09-10T07:21:09.561Z",
+		"nameList": [
+			"hoek"
+		]
+	},
+	"sntp": {
+		"name": "sntp",
+		"version": "0.2.4",
+		"time": "2013-05-22T03:36:47.037Z",
+		"nameList": [
+			"sntp",
+			"hoek"
+		]
+	},
+	"boom": {
+		"name": "boom",
+		"version": "1.0.1",
+		"time": "2013-09-10T07:30:59.354Z",
+		"nameList": [
+			"boom",
+			"hoek"
+		]
+	},
+	"cryptiles": {
+		"name": "cryptiles",
+		"version": "1.0.0",
+		"time": "2013-09-10T07:41:44.835Z",
+		"nameList": [
+			"cryptiles",
+			"boom",
+			"hoek"
+		]
+	},
+	"hawk": {
+		"name": "hawk",
+		"version": "1.1.1",
+		"time": "2013-09-01T20:22:40.241Z",
+		"nameList": [
+			"hawk",
+			"hoek",
+			"boom",
+			"cryptiles",
+			"sntp"
+		]
+	},
+	"request": {
+		"name": "request",
+		"version": "2.27.0",
+		"time": "2013-08-15T21:30:34.410Z",
+		"nameList": [
+			"request",
+			"qs",
+			"json-stringify-safe",
+			"forever-agent",
+			"tunnel-agent",
+			"http-signature",
+			"hawk",
+			"aws-sign",
+			"oauth-sign",
+			"cookie-jar",
+			"node-uuid",
+			"mime",
+			"form-data",
+			"assert-plus",
+			"asn1",
+			"ctype",
+			"combined-stream",
+			"async",
+			"delayed-stream",
+			"hoek",
+			"boom",
+			"cryptiles",
+			"sntp"
+		]
+	},
+	"jbinary": {
+		"name": "jbinary",
+		"version": "1.6.0",
+		"time": "2013-09-12T18:46:29.275Z",
+		"nameList": [
+			"jbinary",
+			"jdataview",
+			"request",
+			"qs",
+			"json-stringify-safe",
+			"forever-agent",
+			"tunnel-agent",
+			"http-signature",
+			"hawk",
+			"aws-sign",
+			"oauth-sign",
+			"cookie-jar",
+			"node-uuid",
+			"mime",
+			"form-data",
+			"assert-plus",
+			"asn1",
+			"ctype",
+			"combined-stream",
+			"async",
+			"delayed-stream",
+			"hoek",
+			"boom",
+			"cryptiles",
+			"sntp"
+		]
 	}
 }

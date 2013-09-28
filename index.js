@@ -1,6 +1,7 @@
 var db = require('nano')('http://isaacs.iriscouch.com/registry'),
 	pkgName = process.argv[2],
-	app = require('express')(),
+	express = require('express'),
+	app = express(),
 	async = require('async'),
 	fs = require('fs'),
 	cacheFile = './cache.json',
@@ -51,7 +52,7 @@ function getNameList(name, callback) {
 		var info = body.versions[body['dist-tags'].latest];
 		var deps = Object.keys(info.dependencies || {});
 
-		log(deps.length > 0 ? 'Got info about $, retrieving dependencies...' : 'Got all info about $.');
+		if (deps.length > 0) log('Got info about $, retrieving dependencies...');
 
 		async.concat(deps, getNameList, function (err, extraDeps) {
 			if (err) return callback(err);
@@ -85,6 +86,8 @@ app.get('/package/:name', function (req, res) {
 		logPackage(req.params.name, 'Returned info on package $.');
 	});
 });
+
+app.use('/', express.static(__dirname + '/static'));
 
 app.listen(3000);
 

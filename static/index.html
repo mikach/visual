@@ -48,32 +48,33 @@
 
             renderer.render(scene, camera);
 
+            (function (dom) {
+                var mousemove = false,
+                    startX, startY;
 
+                dom.addEventListener('mousedown', function(ev) {
+                    mousemove = true;
+                    startX = ev.clientX;
+                    startY = ev.clientY;
+                    posX = camera.position.x;
+                    posY = camera.position.y;
+                }, false);
 
+                dom.addEventListener('mouseup', function() {
+                    mousemove = false;
+                }, false);
 
-            var mousemove = false,
-                startX, startY;
-
-            renderer.domElement.addEventListener('mousedown', function(ev) {
-                mousemove = true;
-                startX = ev.clientX;
-                startY = ev.clientY;
-                posX = camera.position.x;
-                posY = camera.position.y;
-            }, false);
-            renderer.domElement.addEventListener('mouseup', function() {
-                mousemove = false;
-            }, false);
-            renderer.domElement.addEventListener('mousemove', function(ev) {
-                if (!mousemove) return;
-                // console.log(startX, ev.clientX, document.innerWidth);
-                var dx = (startX - ev.clientX)/window.innerWidth/10;
-                var dy = (startY - ev.clientY)/window.innerHeight/10;
-                var v = new THREE.Vector3(dx,dy,0);
-                GROUP.rotateY(-dx);
-                GROUP.rotateX(-dy);
-                renderer.render(scene, camera);
-            }, false);
+                dom.addEventListener('mousemove', function(ev) {
+                    if (!mousemove) return;
+                    // console.log(startX, ev.clientX, document.innerWidth);
+                    var dx = (startX - ev.clientX)/window.innerWidth/5;
+                    var dy = (startY - ev.clientY)/window.innerHeight/5;
+                    var v = new THREE.Vector3(dx,dy,0);
+                    GROUP.rotateY(-dx);
+                    GROUP.rotateX(-dy);
+                    renderer.render(scene, camera);
+                }, false);
+            })(renderer.domElement);
         </script>
     </body>
 </html>
