@@ -1,0 +1,29 @@
+{
+  "name": "visual",
+  "version": "0.0.1",
+  "description": "Awesome tool for npm package dependencies visualization",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npmjs/visual.git"
+  },
+  "keywords": [
+    "npm",
+    "tool",
+    "visual",
+    "packages",
+    "dependencies",
+    "graph",
+    "threejs"
+  ],
+  "author": "npm-tools",
+  "contributors": [
+    "npm-tools",
+    "RReverser",
+    "mikach"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/npmjs/visual/issues"
+  }
+}
