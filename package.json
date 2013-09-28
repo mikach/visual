@@ -25,5 +25,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/npmjs/visual/issues"
+  },
+  "dependencies": {
+    "nano": "~4.1.3"
   }
 }
