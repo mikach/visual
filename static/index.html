@@ -42,11 +42,36 @@
                 lineGeometry.vertices.push(new THREE.Vector3(sphere.position.x, sphere.position.y, sphere.position.z));
                 var l = new THREE.Line(lineGeometry, lineMaterial);
                 GROUP.add(l);
+                addLabel(sp, "LABEL num " + i);
             }
 
             camera.position.z = 500;
 
+            // addLabel();
+
             renderer.render(scene, camera);
+
+            
+
+
+
+
+            function addLabel(obj, text) {
+                var canvas1 = document.createElement('canvas');
+                var context1 = canvas1.getContext('2d');
+                context1.font = "Bold 10px Arial";
+                context1.fillStyle = "rgba(255,0,0,0.95)";
+                context1.fillText('Hello, world!', 0, 50);
+                var texture1 = new THREE.Texture(canvas1) 
+                texture1.needsUpdate = true;
+                var material1 = new THREE.MeshBasicMaterial( {map: texture1, side:THREE.DoubleSide } );
+                material1.transparent = true;
+                var mesh1 = new THREE.Mesh(new THREE.PlaneGeometry(canvas1.width, canvas1.height),material1);
+                mesh1.position.set(obj.position.x+100, obj.position.y+15, obj.position.z+15);
+                GROUP.add( mesh1 );
+            }
+
+
 
             (function (dom) {
                 var mousemove = false,
