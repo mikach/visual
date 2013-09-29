@@ -738,5 +738,286 @@
 			"extend",
 			"rainbowsocks"
 		]
+	},
+	"htmlparser": {
+		"name": "htmlparser",
+		"version": "1.7.6",
+		"time": "2012-04-12T18:13:04.531Z",
+		"deps": [],
+		"nameList": [
+			"htmlparser"
+		]
+	},
+	"navigator": {
+		"name": "navigator",
+		"version": "1.0.1",
+		"time": "2011-11-08T20:18:11.236Z",
+		"deps": [],
+		"nameList": [
+			"navigator"
+		]
+	},
+	"xmlhttprequest": {
+		"name": "xmlhttprequest",
+		"version": "1.6.0",
+		"time": "2013-07-04T03:03:00.701Z",
+		"deps": [],
+		"nameList": [
+			"xmlhttprequest"
+		]
+	},
+	"location": {
+		"name": "location",
+		"version": "0.0.1",
+		"time": "2011-07-26T19:00:15.725Z",
+		"deps": [],
+		"nameList": [
+			"location"
+		]
+	},
+	"bindings": {
+		"name": "bindings",
+		"version": "1.1.1",
+		"time": "2013-07-11T05:05:03.115Z",
+		"deps": [],
+		"nameList": [
+			"bindings"
+		]
+	},
+	"contextify": {
+		"name": "contextify",
+		"version": "0.1.6",
+		"time": "2013-06-12T02:54:16.906Z",
+		"deps": [
+			"bindings"
+		],
+		"nameList": [
+			"contextify",
+			"bindings"
+		]
+	},
+	"cssom": {
+		"name": "cssom",
+		"version": "0.2.5",
+		"time": "2012-07-15T22:21:54.083Z",
+		"deps": [],
+		"nameList": [
+			"cssom"
+		]
+	},
+	"cssstyle": {
+		"name": "cssstyle",
+		"version": "0.2.3",
+		"time": "2012-10-13T03:03:13.188Z",
+		"deps": [
+			"cssom"
+		],
+		"nameList": [
+			"cssstyle",
+			"cssom"
+		]
+	},
+	"nwmatcher": {
+		"name": "nwmatcher",
+		"version": "1.3.1",
+		"time": "2013-02-11T23:07:11.970Z",
+		"deps": [],
+		"nameList": [
+			"nwmatcher"
+		]
+	},
+	"domelementtype": {
+		"name": "domelementtype",
+		"version": "1.1.1",
+		"time": "2013-02-15T07:43:13.702Z",
+		"deps": [],
+		"nameList": [
+			"domelementtype"
+		]
+	},
+	"domutils": {
+		"name": "domutils",
+		"version": "1.2.1",
+		"time": "2013-09-23T13:58:26.205Z",
+		"deps": [
+			"domelementtype"
+		],
+		"nameList": [
+			"domutils",
+			"domelementtype"
+		]
+	},
+	"domhandler": {
+		"name": "domhandler",
+		"version": "2.1.0",
+		"time": "2013-09-04T13:53:30.048Z",
+		"deps": [
+			"domelementtype"
+		],
+		"nameList": [
+			"domhandler",
+			"domelementtype"
+		]
+	},
+	"core-util-is": {
+		"name": "core-util-is",
+		"version": "1.0.0",
+		"time": "2013-08-26T22:51:59.881Z",
+		"deps": [],
+		"nameList": [
+			"core-util-is"
+		]
+	},
+	"debuglog": {
+		"name": "debuglog",
+		"version": "0.0.2",
+		"time": "2013-08-21T18:34:23.741Z",
+		"deps": [],
+		"nameList": [
+			"debuglog"
+		]
+	},
+	"readable-stream": {
+		"name": "readable-stream",
+		"version": "1.1.9",
+		"time": "2013-09-13T15:00:47.024Z",
+		"deps": [
+			"core-util-is",
+			"debuglog"
+		],
+		"nameList": [
+			"readable-stream",
+			"core-util-is",
+			"debuglog"
+		]
+	},
+	"htmlparser2": {
+		"name": "htmlparser2",
+		"version": "3.3.0",
+		"time": "2013-09-04T15:01:30.355Z",
+		"deps": [
+			"domhandler",
+			"domutils",
+			"domelementtype",
+			"readable-stream"
+		],
+		"nameList": [
+			"htmlparser2",
+			"domhandler",
+			"domutils",
+			"domelementtype",
+			"readable-stream",
+			"core-util-is",
+			"debuglog"
+		]
+	},
+	"jsdom": {
+		"name": "jsdom",
+		"version": "0.8.6",
+		"time": "2013-09-28T02:08:46.970Z",
+		"deps": [
+			"htmlparser2",
+			"nwmatcher",
+			"request",
+			"xmlhttprequest",
+			"cssom",
+			"cssstyle",
+			"contextify"
+		],
+		"nameList": [
+			"jsdom",
+			"htmlparser2",
+			"nwmatcher",
+			"request",
+			"xmlhttprequest",
+			"cssom",
+			"cssstyle",
+			"contextify",
+			"qs",
+			"json-stringify-safe",
+			"forever-agent",
+			"tunnel-agent",
+			"http-signature",
+			"hawk",
+			"aws-sign",
+			"oauth-sign",
+			"cookie-jar",
+			"node-uuid",
+			"mime",
+			"form-data",
+			"assert-plus",
+			"asn1",
+			"ctype",
+			"hoek",
+			"boom",
+			"cryptiles",
+			"sntp",
+			"combined-stream",
+			"async",
+			"delayed-stream",
+			"bindings",
+			"domhandler",
+			"domutils",
+			"domelementtype",
+			"readable-stream",
+			"core-util-is",
+			"debuglog"
+		]
+	},
+	"jquery": {
+		"name": "jquery",
+		"version": "1.8.3",
+		"time": "2012-12-01T00:03:02.297Z",
+		"deps": [
+			"jsdom",
+			"htmlparser",
+			"xmlhttprequest",
+			"location",
+			"navigator",
+			"contextify"
+		],
+		"nameList": [
+			"jquery",
+			"jsdom",
+			"htmlparser",
+			"xmlhttprequest",
+			"location",
+			"navigator",
+			"contextify",
+			"bindings",
+			"htmlparser2",
+			"nwmatcher",
+			"request",
+			"cssom",
+			"cssstyle",
+			"qs",
+			"json-stringify-safe",
+			"forever-agent",
+			"tunnel-agent",
+			"http-signature",
+			"hawk",
+			"aws-sign",
+			"oauth-sign",
+			"cookie-jar",
+			"node-uuid",
+			"mime",
+			"form-data",
+			"assert-plus",
+			"asn1",
+			"ctype",
+			"hoek",
+			"boom",
+			"cryptiles",
+			"sntp",
+			"combined-stream",
+			"async",
+			"delayed-stream",
+			"domhandler",
+			"domutils",
+			"domelementtype",
+			"readable-stream",
+			"core-util-is",
+			"debuglog"
+		]
 	}
 }

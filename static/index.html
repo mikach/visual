@@ -70,6 +70,7 @@
             var graph = Viva.Graph.graph();
             var graphics = Viva.Graph.View.svgGraphics();
             var nodeSize = 20;
+            var sidebar = $('aside');
 
             function appendLabels() {
                 graphics.node(function(node) {
@@ -91,7 +92,7 @@
             }
 
             function addInfo(name, ver) {
-                $('aside').append('<p>' + name + '&nbsp;<b>' + ver + '</b></p>');
+                return $('<p>' + name + '&nbsp;<b>' + ver + '</b></p>').appendTo(sidebar);
             }
 
             $.ajax({
@@ -105,7 +106,7 @@
 
                     var rootNodeName = pkg.name + '@' + pkg.version;
                     graph.addNode(rootNodeName);
-                    addInfo(pkg.name,pkg.version);
+                    addInfo(pkg.name, pkg.version);
 
                     var existsNodes = [];
 
