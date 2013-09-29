@@ -100,15 +100,15 @@
                 method: 'get',
                 type: 'json',
                 success: function(data) {
-                    var i, j, ii, pkg = data[0];
+                    var pkg = data[0];
 
                     console.log(data);
+
+                    var existsNodes = [];
 
                     var rootNodeName = pkg.name + '@' + pkg.version;
                     graph.addNode(rootNodeName);
                     addInfo(pkg.name, pkg.version);
-
-                    var existsNodes = [];
 
                     pkg.deps.forEach(function (nodeName) {
                         graph.addNode(nodeName);
