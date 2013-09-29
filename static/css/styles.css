@@ -10,7 +10,7 @@ footer {
     height: 40px;
     text-align: center;
     border-top: 1px solid #ccc;
-    background-color: #fff;;
+    background-color: #fff;
 }
 footer input[type=range] {
     width: 50%;
@@ -31,6 +31,7 @@ aside {
     text-align: left;
     overflow-y: scroll;
     margin-top: 20px;
+    background-color: #fff;
 }
 header {
     top: 0;
@@ -39,4 +40,5 @@ header {
     text-align: center;
     position: fixed;
     border: 1px solid #ccc;
+    background-color: #fff;
 }
