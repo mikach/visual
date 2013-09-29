@@ -1,114 +1,133 @@
 <html>
     <head>
-        <title>three.js app</title>
-        <style>canvas { width: 100%; height: 100% }</style>
+        <title>NPM package dependencies visualization</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 40px;
+                text-align: center;
+                border-top: 1px solid #ccc;
+                background-color: #fff;;
+            }
+            footer input[type=range] {
+                width: 50%;
+                height: 100%;
+            }
+            footer h3 {
+                float: left;
+                line-height: 40px;
+                margin: 0 0 0 10px;
+            }
+            aside {
+                position: fixed;
+                right: 0;
+                height: 500px;
+                width: 200px;
+                padding: 20px;
+                border: 1px solid #ccc;
+                text-align: left;
+                overflow-y: scroll;
+            }
+        </style>
     </head>
     <body>
-        <script src="https://rawgithub.com/mrdoob/three.js/master/build/three.js"></script>
+        <script src="js/vivagraph.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script>
-            var radius = 200, deep = 1;
 
-            var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            var graph = Viva.Graph.graph();
+            var graphics = Viva.Graph.View.svgGraphics();
+            var nodeSize = 20;
 
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
 
-            var GROUP = new THREE.Object3D();
-            scene.add(GROUP);
 
-            var labelGroup = new THREE.Object3D();
-            scene.add(labelGroup);
 
-            var geometry = new THREE.SphereGeometry(10, 15, 15);
-            var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-            var sphere = new THREE.Mesh(geometry, material);
-            //sphere.position.set(0,50,0);
-            GROUP.add(sphere);
-
-            var lineMaterial = new THREE.LineBasicMaterial({
-                color: 0x0000ff
-            });
-
-            function addLabel(obj, text) {
-                var canvas1 = document.createElement('canvas');
-                var context1 = canvas1.getContext('2d');
-                context1.font = "Bold 10px Arial";
-                context1.fillStyle = "rgba(255,0,0,0.95)";
-                context1.fillText('Hello, world!', 0, 50);
-                var texture1 = new THREE.Texture(canvas1) 
-                texture1.needsUpdate = true;
-                var material1 = new THREE.MeshBasicMaterial( {map: texture1, side:THREE.DoubleSide } );
-                material1.transparent = true;
-                var mesh1 = new THREE.Mesh(new THREE.PlaneGeometry(canvas1.width, canvas1.height),material1);
-                mesh1.userData = obj;
-                labelGroup.add( mesh1 );
+            function appendLabels() {
+                graphics.node(function(node) {
+                  var ui = Viva.Graph.svg('g'),
+                      svgText = Viva.Graph.svg('text').attr('y', '-4px').text(node.id);
+                  ui.append(svgText);
+                  return ui;
+                }).placeNode(function(nodeUI, pos) {
+                    nodeUI.attr('transform', 'translate(' + (pos.x - nodeSize/2) + ',' + (pos.y - nodeSize/2) + ')');
+                }); 
             }
-
-            var count = 5;
-            for (var i = 0; i < count; i++) {
-                var sp = new THREE.Mesh(geometry, material);
-                var r = deep*radius;
-                sp.position.z = 0;//i*50;
-                sp.position.x = radius*deep;//radius*deep;
-                sp.position.y = sphere.position.y - count*80/2 + i*80;
-                GROUP.add(sp);
-                var lineGeometry = new THREE.Geometry();
-                lineGeometry.vertices.push(new THREE.Vector3(sp.position.x, sp.position.y, sp.position.z));
-                lineGeometry.vertices.push(new THREE.Vector3(sphere.position.x, sphere.position.y, sphere.position.z));
-                var l = new THREE.Line(lineGeometry, lineMaterial);
-                GROUP.add(l);
-                addLabel(sp, "LABEL num " + i);
-            }
-
-            camera.position.z = 500;
-
-            // addLabel();
 
             function render() {
-                labelGroup.children.forEach(function (mesh1) {
-                    var obj = mesh1.userData;
-                    var vector = obj.geometry.vertices[i].clone();
-                    vector.applyMatrix4( obj.matrixWorld );
-                    vector.x += 120;
-                    mesh1.position = vector;
+                var renderer = Viva.Graph.View.renderer(graph, {
+                    graphics : graphics
                 });
-                renderer.render(scene, camera);
+                renderer.run();
             }
 
-            (function (dom) {
-                var mousemove = false,
-                    startX, startY;
+            function addInfo(name, ver) {
+                document.querySelector('aside').innerHTML += '<p>' + name + '&nbsp;<b>' + ver + '</b></p>';
+            }
 
-                dom.addEventListener('mousedown', function(ev) {
-                    mousemove = true;
-                    startX = ev.clientX;
-                    startY = ev.clientY;
-                    posX = camera.position.x;
-                    posY = camera.position.y;
-                }, false);
+           
 
-                dom.addEventListener('mouseup', function() {
-                    mousemove = false;
-                }, false);
 
-                dom.addEventListener('mousemove', function(ev) {
-                    if (!mousemove) return;
-                    // console.log(startX, ev.clientX, document.innerWidth);
-                    var dx = (startX - ev.clientX)/window.innerWidth/5;
-                    var dy = (startY - ev.clientY)/window.innerHeight/5;
-                    var v = new THREE.Vector3(dx,dy,0);
-                    
-                    GROUP.rotateY(-dx);
-                    GROUP.rotateX(-dy);
-                    
-                    requestAnimationFrame(render);
-                }, false);
-            })(renderer.domElement);
+            $.ajax({
+                url: 'package/component',
+                method: 'get',
+                type: 'json',
+                success: function(data) {
+                    var i, j, pkg = data[0];
 
-            render();
-            render();
+                    console.log(data);
+
+                    var rootNodeName = [pkg.name,pkg.version].join(' ');
+                    graph.addNode( rootNodeName );
+                    addInfo(pkg.name,pkg.version);
+
+                    var existsNodes = [];
+
+                    // dependencies of main node
+                    for (i = 1, ii = pkg.nameList.length; i < ii; i++) {
+                        var nodeName = pkg.nameList[i];
+                        graph.addNode(nodeName);
+                        graph.addLink(rootNodeName, nodeName);
+                        existsNodes.push(nodeName);
+                    }
+                    // dependencies of dependencies
+                    for (i = 1, ii < data.length; i < ii; i++) {
+                        pkg = data[i];
+                        var pkgName = data[i].name;
+                        addInfo(pkgName, data[i].version);
+                        if (pkg.nameList.length > 1) {
+                            for (j = 1; j < pkg.nameList.length; j++) {
+                                nodeName = pkg.nameList[j];
+                                // add node if not in graph yet
+                                if (existsNodes.indexOf(nodeName) == -1) {
+                                    graph.addNode(nodeName);
+                                    existsNodes.push(nodeName);
+                                }
+                                graph.addLink(pkgName, nodeName);
+                            }
+                        }
+                    }
+                    appendLabels();
+                    render();
+                }
+            });
+            
         </script>
+
+        <aside>
+            <h3>Info</h3>
+            <hr />
+        </aside>
+
+        <footer>
+            <h3>Timeline</h3>
+            <input type="range"  min="1" max="10" step="2" />
+        </footer>
     </body>
 </html>
