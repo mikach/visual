@@ -39,7 +39,7 @@
     </head>
     <body>
         <script src="js/vivagraph.min.js"></script>
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="js/jquery.min.js"></script>
         <script>
 
             var graph = Viva.Graph.graph();
@@ -51,10 +51,11 @@
 
             function appendLabels() {
                 graphics.node(function(node) {
-                  var ui = Viva.Graph.svg('g'),
-                      svgText = Viva.Graph.svg('text').attr('y', '-4px').text(node.id);
-                  ui.append(svgText);
-                  return ui;
+                    var ui = Viva.Graph.svg('g'),
+                        svgText = Viva.Graph.svg('text').attr('y', '-4px').text(node.id);
+
+                    ui.append(svgText);
+                    return ui;
                 }).placeNode(function(nodeUI, pos) {
                     nodeUI.attr('transform', 'translate(' + (pos.x - nodeSize/2) + ',' + (pos.y - nodeSize/2) + ')');
                 }); 
