@@ -35,15 +35,36 @@
                         svgText = Viva.Graph.svg('text').attr('y', '-4px').text(node.id);
 
                     ui.append(svgText);
+
+                    $(svgText).hover(function() {
+                        highlightRelated(node.id, true);
+                    }, function() {
+                        highlightRelated(node.id, false);
+                    });
                     return ui;
                 }).placeNode(function(nodeUI, pos) {
                     nodeUI.attr('transform', 'translate(' + (pos.x - nodeSize/2) + ',' + (pos.y - nodeSize/2) + ')');
                 }); 
             }
 
+            function highlightRelated(id, reverse) {
+                graph.forEachLinkedNode(id, function(node, link){
+                   if (link && link.ui) {
+                       link.ui.attr('stroke', reverse ? 'red' : 'gray');
+                   }
+               });  
+            }
+
             function render() {
+                var layout = Viva.Graph.Layout.forceDirected(graph, {
+                    springLength : 150,
+                    springCoeff : 0.0015,
+                    dragCoeff : 0.02,
+                    gravity : -11.2
+                });
                 var renderer = Viva.Graph.View.renderer(graph, {
-                    graphics : graphics
+                    graphics : graphics,
+                    layout: layout
                 });
                 renderer.run();
             }
