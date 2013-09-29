@@ -34,10 +34,34 @@
                 border: 1px solid #ccc;
                 text-align: left;
                 overflow-y: scroll;
+                margin-top: 20px;
+            }
+            header {
+                top: 0;
+                left: 0;
+                padding: 20px;
+                text-align: center;
+                position: fixed;
+                border: 1px solid #ccc;
             }
         </style>
     </head>
     <body>
+        <header>
+            <input type="text" placeholder="Browse another package" required />
+            <button>Go</button>
+        </header>
+
+        <aside>
+            <h3>Info</h3>
+            <hr />
+        </aside>
+
+        <footer>
+            <h3>Timeline</h3>
+            <input type="range"  min="1" max="10" step="2" />
+        </footer>
+
         <script src="js/vivagraph.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script>
@@ -73,9 +97,8 @@
 
            
 
-
             $.ajax({
-                url: 'package/component',
+                url: 'package/' + window.location.hash.slice(1),
                 method: 'get',
                 type: 'json',
                 success: function(data) {
@@ -117,17 +140,14 @@
                     render();
                 }
             });
+
+            $('header button').click(function() {
+                // window.location.hash = $(this).prev().val();
+                var r = + new Date;
+                window.location = '?r=' + r + '#' + $(this).prev().val();
+            });
             
         </script>
 
-        <aside>
-            <h3>Info</h3>
-            <hr />
-        </aside>
-
-        <footer>
-            <h3>Timeline</h3>
-            <input type="range"  min="1" max="10" step="2" />
-        </footer>
     </body>
 </html>
