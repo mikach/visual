@@ -1019,5 +1019,42 @@
 			"core-util-is",
 			"debuglog"
 		]
+	},
+	"ncp": {
+		"name": "ncp",
+		"version": "0.4.2",
+		"time": "2013-03-12T17:03:20.086Z",
+		"deps": [],
+		"nameList": [
+			"ncp"
+		]
+	},
+	"jsonfile": {
+		"name": "jsonfile",
+		"version": "1.0.1",
+		"time": "2013-09-06T02:02:36.867Z",
+		"deps": [],
+		"nameList": [
+			"jsonfile"
+		]
+	},
+	"fs-extra": {
+		"name": "fs-extra",
+		"version": "0.6.4",
+		"time": "2013-09-06T02:06:45.235Z",
+		"deps": [
+			"ncp",
+			"mkdirp",
+			"jsonfile",
+			"rimraf"
+		],
+		"nameList": [
+			"fs-extra",
+			"ncp",
+			"mkdirp",
+			"jsonfile",
+			"rimraf",
+			"graceful-fs"
+		]
 	}
 }
