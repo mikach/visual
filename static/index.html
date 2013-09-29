@@ -30,9 +30,14 @@
             var sidebar = $('aside');
 
             function appendLabels() {
+                var first = true;
                 graphics.node(function(node) {
                     var ui = Viva.Graph.svg('g'),
                         svgText = Viva.Graph.svg('text').attr('y', '-4px').text(node.id);
+                    if (first) { 
+                        svgText.attr('font-weight', 'bold');
+                        first = false;
+                    }
 
                     ui.append(svgText);
 
@@ -70,7 +75,7 @@
             }
 
             function addInfo(name, ver) {
-                return $('<p>' + name + '&nbsp;<b>' + ver + '</b></p>').appendTo(sidebar);
+                return $('<p><a href="http://npmjs.org/package/' + name + '" target="_blank">' + name + '</a>&nbsp;<b>' + ver + '</b></p>').appendTo(sidebar);
             }
 
             $.ajax({
