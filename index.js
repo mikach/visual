@@ -65,6 +65,7 @@ function getNameList(name, callback) {
 				name: name,
 				version: info.version,
 				time: body.time[info.version],
+				deps: deps,
 				nameList: nameList
 			};
 

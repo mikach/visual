@@ -48,8 +48,10 @@
     </head>
     <body>
         <header>
-            <input type="text" placeholder="Browse another package" required />
-            <button>Go</button>
+            <form>
+                <input name="package" type="text" placeholder="Browse another package" required />
+                <button>Go</button>
+            </form>
         </header>
 
         <aside>
@@ -65,13 +67,9 @@
         <script src="js/vivagraph.min.js"></script>
         <script src="js/jquery.min.js"></script>
         <script>
-
             var graph = Viva.Graph.graph();
             var graphics = Viva.Graph.View.svgGraphics();
             var nodeSize = 20;
-
-
-
 
             function appendLabels() {
                 graphics.node(function(node) {
@@ -93,61 +91,49 @@
             }
 
             function addInfo(name, ver) {
-                document.querySelector('aside').innerHTML += '<p>' + name + '&nbsp;<b>' + ver + '</b></p>';
+                $('aside').append('<p>' + name + '&nbsp;<b>' + ver + '</b></p>');
             }
 
-           
-
             $.ajax({
-                url: 'package/' + window.location.hash.slice(1),
+                url: 'package/' + location.search.match(/package=([^&]*)/)[1],
                 method: 'get',
                 type: 'json',
                 success: function(data) {
-                    var i, j, pkg = data[0];
+                    var i, j, ii, pkg = data[0];
 
                     console.log(data);
 
-                    var rootNodeName = [pkg.name,pkg.version].join(' ');
-                    graph.addNode( rootNodeName );
+                    var rootNodeName = pkg.name + '@' + pkg.version;
+                    graph.addNode(rootNodeName);
                     addInfo(pkg.name,pkg.version);
 
                     var existsNodes = [];
 
-                    // dependencies of main node
-                    for (i = 1, ii = pkg.nameList.length; i < ii; i++) {
-                        var nodeName = pkg.nameList[i];
+                    pkg.deps.forEach(function (nodeName) {
                         graph.addNode(nodeName);
                         graph.addLink(rootNodeName, nodeName);
                         existsNodes.push(nodeName);
-                    }
+                    });
+
                     // dependencies of dependencies
-                    for (i = 1, ii < data.length; i < ii; i++) {
-                        pkg = data[i];
-                        var pkgName = data[i].name;
-                        addInfo(pkgName, data[i].version);
-                        if (pkg.nameList.length > 1) {
-                            for (j = 1; j < pkg.nameList.length; j++) {
-                                nodeName = pkg.nameList[j];
+                    data.slice(1).forEach(function (pkg) {
+                        addInfo(pkg.name, pkg.version);
+                        if (pkg.deps.length > 0) {
+                            pkg.deps.forEach(function (nodeName) {
                                 // add node if not in graph yet
                                 if (existsNodes.indexOf(nodeName) == -1) {
                                     graph.addNode(nodeName);
                                     existsNodes.push(nodeName);
                                 }
-                                graph.addLink(pkgName, nodeName);
-                            }
+                                graph.addLink(pkg.name, nodeName);
+                            });
                         }
-                    }
+                    });
+
                     appendLabels();
                     render();
                 }
             });
-
-            $('header button').click(function() {
-                // window.location.hash = $(this).prev().val();
-                var r = + new Date;
-                window.location = '?r=' + r + '#' + $(this).prev().val();
-            });
-            
         </script>
 
     </body>
